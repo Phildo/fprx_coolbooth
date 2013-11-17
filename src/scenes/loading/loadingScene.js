@@ -4,8 +4,8 @@ var LoadingScene = function(game, canv)
   var barw;
   var progress;
 
-  var numimages = 0;
-  var imagesloaded = 0;
+  var numimages = 1;
+  var imagesloaded = 1;
   var images = [];
 
   var imageLoaded = function()
