@@ -18,9 +18,8 @@ var Wall = function(x, y, width, height,pos)
       case "down" : input = ih.down;  break;
       case "left" : input = ih.left;  break;
     }
-    if(input) this.charge++;
-    else this.charge--;
-    if(this.charge < 0) this.charge = 0;
+    if(input) this.charge+=5;
+    else this.charge = 0;
   };
 
   this.draw = function(canv)
@@ -30,6 +29,12 @@ var Wall = function(x, y, width, height,pos)
     if(this.charge > 255) color = "FF";
 
     canv.context.fillStyle = "#"+color+""+color+""+color;
-    canv.context.fillRect(this.x,this.y,this.width,this.height);
+    canv.context.fillRect(this.x-(this.width/2),this.y-(this.height/2),this.width,this.height);
+  };
+
+  this.collide = function(thing)
+  {
+    
   };
 };
+
