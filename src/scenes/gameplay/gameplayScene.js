@@ -17,10 +17,10 @@ var GamePlayScene = function(game, canv)
 
     ball = new Ball(canv.width/2,canv.height/2);
     walls = [];
-    walls.push(new Wall(canv.width/2,             5, canv.width,          10, "up"));
-    walls.push(new Wall(canv.width-5, canv.height/2,         10, canv.height, "right"));
-    walls.push(new Wall(canv.width/2, canv.height-5, canv.width,          10, "down"));
-    walls.push(new Wall(5,            canv.height/2,         10, canv.height, "left"));
+    walls.push(new Wall(  canv.width/2,            -100, 2*canv.width,           220, "up"));
+    walls.push(new Wall(canv.width+100,   canv.height/2,          220, 2*canv.height, "right"));
+    walls.push(new Wall(  canv.width/2, canv.height+100, 2*canv.width,           220, "down"));
+    walls.push(new Wall(          -100,   canv.height/2,          220, 2*canv.height, "left"));
     gate = new Gate(canv.width/2, 5, 40, 10);
 
     entities.push(ball);
