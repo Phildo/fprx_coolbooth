@@ -16,7 +16,7 @@ var GamePlayScene = function(game, canv)
 
     ih = new InputHandler();
 
-    ball = new Ball();
+    ball = new Ball(0,0);
     walls = [];
     for(var i = 0; i < numWalls; i++)
      walls.push(new Wall());

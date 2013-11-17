@@ -1,25 +1,27 @@
 var InputHandler = function()
 {
-  this.up    = false;
-  this.left  = false;
-  this.right = false;
-  this.down  = false;
+  var self = this;
+
+  self.up    = false;
+  self.left  = false;
+  self.right = false;
+  self.down  = false;
 
   function downKey(e)
   {
     switch(e.keyCode)
     {
       case 87:
-        this.up = true;
+        self.up = true;
         break;
       case 65:
-        this.left = true;
+        self.left = true;
         break;
       case 68:
-        this.right = true;
+        self.right = true;
         break;
       case 83:
-        this.down = true;
+        self.down = true;
         break;
     }
   };
@@ -29,16 +31,16 @@ var InputHandler = function()
     switch(e.keyCode)
     {
       case 87:
-        this.up = false;
+        self.up = false;
         break;
       case 65:
-        this.left = false;
+        self.left = false;
         break;
       case 68:
-        this.right = false;
+        self.right = false;
         break;
       case 83:
-        this.down = false;
+        self.down = false;
         break;
     }
   };
