@@ -5,6 +5,8 @@ var Canv = function(width, height)
   this.canvas.setAttribute('width',width);
   this.canvas.setAttribute('height',height);
   this.context = this.canvas.getContext('2d');
+  this.width = width;
+  this.height = height;
 
   this.context.lineWidth = 2;
 

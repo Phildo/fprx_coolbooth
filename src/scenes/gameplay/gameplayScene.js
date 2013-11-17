@@ -11,15 +11,16 @@ var GamePlayScene = function(game, canv)
   
   this.ready = function()
   {
-    var numWalls = 4;
     entities = [];
 
     ih = new InputHandler();
 
     ball = new Ball(0,0);
     walls = [];
-    for(var i = 0; i < numWalls; i++)
-     walls.push(new Wall());
+    walls.push(new Wall(0,            0,             canv.width,10,         "up"));
+    walls.push(new Wall(canv.width-10,0,             10,        canv.height,"right"));
+    walls.push(new Wall(0,            canv.height-10,canv.width,10,         "down"));
+    walls.push(new Wall(0,            0,             10,        canv.height,"left"));
     gate = new Gate();
 
     entities.push(ball);
@@ -44,3 +45,4 @@ var GamePlayScene = function(game, canv)
   {
   };
 };
+

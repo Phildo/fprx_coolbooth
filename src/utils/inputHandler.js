@@ -46,5 +46,5 @@ var InputHandler = function()
   };
 
   document.addEventListener('keydown', downKey, false);
-  document.addEventListener('keyup', upKey, false);
+  document.addEventListener('keyup',   upKey,   false);
 };
