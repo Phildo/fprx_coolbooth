@@ -13,7 +13,7 @@ var StrikeSpot = function(ball, gateHit) {
 	this.g2Color = parseInt(this.color.substring(4,5), 16);
 	this.b1Color = parseInt(this.color.substring(5,6), 16);
 	this.b2Color = parseInt(this.color.substring(6),   16);
-	
+	//yeah
 	if (this.r1Color >= 0 && this.r1Color < 15) {
 		this.r1Inc = true;
 	}
