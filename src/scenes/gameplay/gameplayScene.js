@@ -19,7 +19,6 @@ var GamePlayScene = function(game, canv)
     balls = [];
     for(var i = 0; i < 200; i++) {
      	ballRandom = Math.floor(Math.random()*5);
-		console.log(ballRandom);
 		switch (ballRandom) {
 			case 0:
 				ballColor = "red";
