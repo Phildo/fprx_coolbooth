@@ -1,10 +1,11 @@
-var Ball = function(x, y, xvel, yvel)
+var Ball = function(x, y, xvel, yvel, color)
 {
   this.type = "BALL";
   this.x = x;
   this.y = y;
   this.width  = 10;
   this.height = 10;
+  this.color = color;
 
   this.xvel = xvel;
   this.yvel = yvel;
@@ -27,10 +28,10 @@ var Ball = function(x, y, xvel, yvel)
   {
     canv.context.beginPath();
     canv.context.arc(this.x, this.y, this.width/2, 0, 2*Math.PI, false);
-    canv.context.fillStyle = 'green';
+    canv.context.fillStyle = this.color;
     canv.context.fill();
     canv.context.lineWidth = 5;
-    canv.context.strokeStyle = 'green';
+    canv.context.strokeStyle = this.color;
     //canv.context.strokeStyle = '#003300';
     canv.context.stroke();
   };
