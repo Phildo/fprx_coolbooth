@@ -6,9 +6,12 @@ var Ball = function(x, y, xvel, yvel, color)
   this.width  = 10;
   this.height = 10;
   this.color = color;
+  this.strikes = [];
 
   this.xvel = xvel;
   this.yvel = yvel;
+
+  var self = this;
 
   this.tick = function(ih)
   {
@@ -22,6 +25,15 @@ var Ball = function(x, y, xvel, yvel, color)
     if(this.xvel > -2 && this.xvel < 0) this.xvel = -2;
     if(this.yvel <  2 && this.yvel > 0) this.yvel = 2;
     if(this.yvel > -2 && this.yvel < 0) this.yvel = -2;
+
+	if (self.strikes.length > 0) {
+		for (var i = 0; i < self.strikes.length; i++) {
+			self.strikes[i].tick();
+		}
+	}
+	if (self.strikes.length > 3) {
+		self.strikes.shift();
+	}
   };
 
   this.draw = function(canv)
@@ -34,7 +46,16 @@ var Ball = function(x, y, xvel, yvel, color)
     canv.context.strokeStyle = this.color;
     //canv.context.strokeStyle = '#003300';
     canv.context.stroke();
+
+	if (self.strikes.length > 0) {
+		for (var i = 0; i < self.strikes.length; i++) {
+			self.strikes[i].draw(canv);
+		}
+	}
   };
+
+  this.cleanup = function() {
+  }	
 
   this.collide = function(thing)
   {
@@ -63,6 +84,17 @@ var Ball = function(x, y, xvel, yvel, color)
           this.xvel += thing.xvel;
           break;
       }
+
+	  //Strike
+	  strike = new StrikeSpot(self, false);
+	  self.strikes.push(strike);
     }
+	if (thing.type == "GATE") 
+	{
+		console.log("hit gate");
+		strike = new StrikeSpot(self, true);
+		self.strikes.push(strike);
+	}
+	
   };
 };
