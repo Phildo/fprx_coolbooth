@@ -2,6 +2,8 @@ var Gate = function(x, y, width, height)
 {
   this.x = x;
   this.y = y;
+  this.xvel = 0;
+  this.yvel = 0;
   this.width  = width;
   this.height = height;
 

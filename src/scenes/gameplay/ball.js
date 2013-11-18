@@ -5,17 +5,21 @@ var Ball = function(x, y)
   this.width  = 10;
   this.height = 10;
 
-  this.xvel = 1;
-  this.yvel = 1;
-  this.speed = 2;
+  this.xvel = 2;
+  this.yvel = 2;
 
   this.tick = function(ih)
   {
-    this.x += this.xvel*this.speed;
-    this.y += this.yvel*this.speed;
+    this.x += this.xvel;
+    this.y += this.yvel;
 
-    this.speed = this.speed*0.99;
-    if(this.speed < 1) this.speed = 1;
+    this.xvel = this.xvel*0.99;
+    this.yvel = this.yvel*0.99;
+
+    if(this.xvel <  2 && this.xvel > 0) this.xvel = 2;
+    if(this.xvel > -2 && this.xvel < 0) this.xvel = -2;
+    if(this.yvel <  2 && this.yvel > 0) this.yvel = 2;
+    if(this.yvel > -2 && this.yvel < 0) this.yvel = -2;
   };
 
   this.draw = function(canv)
@@ -31,7 +35,10 @@ var Ball = function(x, y)
 
   this.collide = function(thing)
   {
-    this.speed += 2;
+    if(this.xvel > 0) this.xvel += 2;
+    if(this.xvel < 0) this.xvel -= 2;
+    if(this.yvel > 0) this.yvel += 2;
+    if(this.yvel < 0) this.yvel -= 2;
     if(thing.pos !== undefined) //its a wall
     {
       if(thing.pos == "up" || thing.pos == "down")
