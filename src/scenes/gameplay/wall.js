@@ -20,7 +20,8 @@ var Wall = function(x, y, width, height,pos)
         if(ih.up)
         {
           charging = true;
-          this.yvel = -.2;
+          if(this.y < this.homeY-35) this.y = this.homeY-35;
+          this.yvel = -(this.y-(this.homeY-35))/8;
         }
         else 
           charging = false;
@@ -29,7 +30,8 @@ var Wall = function(x, y, width, height,pos)
         if(ih.right)
         {
           charging = true;
-          this.xvel = .2;
+          if(this.x > this.homeX+35) this.x = this.homeX+35;
+          this.xvel = ((this.homeX+35)-this.x)/8;
         }
         else 
           charging = false;
@@ -38,7 +40,8 @@ var Wall = function(x, y, width, height,pos)
         if(ih.down)
         {
           charging = true;
-          this.yvel = .2;
+          if(this.y > this.homeY+35) this.y = this.homeY+35;
+          this.yvel = ((this.homeY+35)-this.y)/8;
         }
         else 
           charging = false;
@@ -47,7 +50,8 @@ var Wall = function(x, y, width, height,pos)
         if(ih.left)
         {
           charging = true;
-          this.xvel = -.2;
+          if(this.x < this.homeX-35) this.x = this.homeX-35;
+          this.xvel = -(this.x-(this.homeX-35))/8;
         }
         else
           charging = false;
@@ -65,8 +69,8 @@ var Wall = function(x, y, width, height,pos)
       if(this.y > this.homeY) this.yvel -= (this.y-this.homeY)/10;
     }
 
-    this.xvel = this.xvel * 0.99;
-    this.yvel = this.yvel * 0.99;
+    this.xvel = this.xvel * 0.9;
+    this.yvel = this.yvel * 0.9;
   };
 
   this.draw = function(canv)
