@@ -1,5 +1,6 @@
 var Gate = function(x, y, width, height)
 {
+  this.type = "GATE";
   this.x = x;
   this.y = y;
   this.xvel = 0;
@@ -19,7 +20,13 @@ var Gate = function(x, y, width, height)
 
   this.collide = function(thing)
   {
-    
+    if(thing.type == "BALL")
+    {
+      var speed = Math.sqrt((thing.xvel*thing.xvel) + (thing.yvel*thing.yvel));
+      //console.log(speed);
+      //if(speed > 10)
+        //console.log("BREAK");
+    }
   };
 };
 

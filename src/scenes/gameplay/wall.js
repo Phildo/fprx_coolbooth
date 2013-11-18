@@ -1,5 +1,6 @@
 var Wall = function(x, y, width, height,pos)
 {
+  this.type = "WALL";
   this.homeX = x;
   this.homeY = y;
   this.x = x;
