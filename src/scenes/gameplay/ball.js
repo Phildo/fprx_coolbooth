@@ -1,4 +1,4 @@
-var Ball = function(x, y)
+var Ball = function(x, y, xvel, yvel)
 {
   this.type = "BALL";
   this.x = x;
@@ -6,16 +6,16 @@ var Ball = function(x, y)
   this.width  = 10;
   this.height = 10;
 
-  this.xvel = 2;
-  this.yvel = 2;
+  this.xvel = xvel;
+  this.yvel = yvel;
 
   this.tick = function(ih)
   {
     this.x += this.xvel;
     this.y += this.yvel;
 
-    this.xvel = this.xvel*0.99;
-    this.yvel = this.yvel*0.99;
+    this.xvel = this.xvel*0.995;
+    this.yvel = this.yvel*0.995;
 
     if(this.xvel <  2 && this.xvel > 0) this.xvel = 2;
     if(this.xvel > -2 && this.xvel < 0) this.xvel = -2;
@@ -30,7 +30,8 @@ var Ball = function(x, y)
     canv.context.fillStyle = 'green';
     canv.context.fill();
     canv.context.lineWidth = 5;
-    canv.context.strokeStyle = '#003300';
+    canv.context.strokeStyle = 'green';
+    //canv.context.strokeStyle = '#003300';
     canv.context.stroke();
   };
 

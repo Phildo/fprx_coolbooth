@@ -2,7 +2,7 @@ var GamePlayScene = function(game, canv)
 {
   var entities;
   
-  var ball;
+  var balls;
   var walls;
   var gate;
 
@@ -15,7 +15,9 @@ var GamePlayScene = function(game, canv)
 
     ih = new InputHandler();
 
-    ball = new Ball(canv.width/2,canv.height/2);
+    balls = [];
+    for(var i = 0; i < 100; i++)
+      balls.push(new Ball(Math.random()*canv.width,Math.random()*canv.height,Math.random()*16-8,Math.random()*16-8));
     walls = [];
     walls.push(new Wall(  canv.width/2,            -100, 2*canv.width,           280, "up"));
     walls.push(new Wall(canv.width+100,   canv.height/2,          280, 2*canv.height, "right"));
@@ -23,7 +25,8 @@ var GamePlayScene = function(game, canv)
     walls.push(new Wall(          -100,   canv.height/2,          280, 2*canv.height, "left"));
     gate = new Gate(canv.width/2, 5, 40, 10);
 
-    entities.push(ball);
+    for(var i = 0; i < balls.length; i++)
+     entities.push(balls[i]);
     for(var i = 0; i < walls.length; i++)
      entities.push(walls[i]);
     entities.push(gate);
