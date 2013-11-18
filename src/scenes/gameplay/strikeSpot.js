@@ -56,9 +56,15 @@ var StrikeSpot = function(ball, gateHit) {
 	//Sets the velocity of the circle expansion equal to the ball's velocity on contact
 	this.tick = function()
 	{
-	    this.width += this.vel;
+		if (gateHit) {
+			this.width += 2*(this.vel);
+		}
+		else {
+			 this.width += this.vel;
+		}
+	   
 	};
-	
+	//Why does it draw over sometimes and not others?
 	this.draw = function(canv) 
 	{
 		if (this.gateHit) {
@@ -164,8 +170,11 @@ var StrikeSpot = function(ball, gateHit) {
 			canv.context.beginPath();
 		    canv.context.arc(this.x, this.y, this.width/2, 0, this.radius, false);
 			canv.context.lineWidth = 10;
+			canv.context.fillStyle = newColor;
+		    canv.context.fill();
 		    canv.context.strokeStyle = newColor;
 			canv.context.stroke();
+			
 		}
 		else {
 			canv.context.beginPath();

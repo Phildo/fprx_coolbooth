@@ -18,7 +18,7 @@ var GamePlayScene = function(game, canv)
     ih = new InputHandler();
 
     balls = [];
-    for(var i = 0; i < 5; i++) {
+    for(var i = 0; i < 6; i++) {
      	ballRandom = Math.floor(Math.random()*5);
 		switch (ballRandom) {
 			case 0:

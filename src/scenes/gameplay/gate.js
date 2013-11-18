@@ -15,11 +15,11 @@ var Gate = function(x, y, width, height, color)
   this.tick = function(ih)
   {
 	if (this.isHit && this.justHit <= 120) {
-		this.justHit += 20;
+		this.justHit += 30;
 	}
 	else if (this.justHit > 0) {
 		this.isHit = false;
-		this.justHit -= 2;
+		this.justHit -= 3;
 	}
   };
 
@@ -81,7 +81,7 @@ var Gate = function(x, y, width, height, color)
 		canv.context.fillStyle = this.color;
 	}
     //Needs bounce
-    canv.context.fillRect(this.x-(this.width/2)-((this.justHit)/10),this.y-(this.height/2)-2,this.width + (this.justHit/5),this.height + (this.justHit/5));
+    canv.context.fillRect(this.x-(this.width/2)-((this.justHit)/10),this.y-(this.height/2)-2,this.width + (this.justHit/4),this.height + (this.justHit/4));
   };
 
   this.collide = function(thing)
@@ -90,7 +90,7 @@ var Gate = function(x, y, width, height, color)
     {
       var speed = Math.sqrt((thing.xvel*thing.xvel) + (thing.yvel*thing.yvel));
       if(speed > 10) {
-		console.log("BREAK");
+		//console.log("BREAK");
 	  }
 	  this.isHit = true;
 	  this.ballColor = thing.color;  	

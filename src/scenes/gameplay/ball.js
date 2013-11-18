@@ -91,7 +91,7 @@ var Ball = function(x, y, xvel, yvel, color)
     }
 	if (thing.type == "GATE") 
 	{
-		console.log("hit gate");
+		//console.log("hit gate");
 		strike = new StrikeSpot(self, true);
 		self.strikes.push(strike);
 	}
