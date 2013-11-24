@@ -1,14 +1,27 @@
-var CollisionHandler = function(entities)
+var CollisionHandler = function()
 {
-  this.tick = function()
+  var self = this;
+  var collidables = [];
+
+  self.registerCollidable = function(collidable)
   {
-    for(var i = 0; i < entities.length; i++)
+    collidables.push(collidable);
+  }
+
+  self.unregisterCollidable = function(collidable)
+  {
+    collidables.splice(collidables.indexOf(collidable),1);
+  }
+
+  self.tick = function()
+  {
+    for(var i = 0; i < collidables.length; i++)
     {
-      for(var j = i; j < entities.length; j++)
+      for(var j = i; j < collidables.length; j++)
       {
         if(i == j) continue;
-        var ei = entities[i];
-        var ej = entities[j];
+        var ei = collidables[i];
+        var ej = collidables[j];
 
         var lefti  = ei.x-(ei.width/2);
         var righti = ei.x+(ei.width/2);

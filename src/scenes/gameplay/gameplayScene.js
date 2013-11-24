@@ -1,66 +1,72 @@
 var GamePlayScene = function(game, canv)
 {
-  var entities;
-
-  var bf;
+  var self = this;
+  var rooms;
+  var ball;
 
   var ih;
   var ch;
   var ph;
+  var tickables;
+  var drawables;
 
-  var balls;
-  var walls;
-  var gate;
-
-  this.ready = function()
+  self.ready = function()
   {
-    entities = [];
     ih = new InputHandler();
+    ch = new CollisionHandler();
     ph = new ParticleHandler();
+    tickables = [];
+    drawables = [];
 
-    bf = new BallFactory(canv,ph);
+    rooms = [];
+    rooms.push(new Room(canv.width, canv.height, self));
+    ball = new Ball(Math.random()*canv.width,Math.random()*canv.height,Math.random()*16-8,Math.random()*16-8, self);
+    self.registerEntity(ball);
 
-    balls = [];
-    for(var i = 0; i < 6; i++)
-      balls.push(bf.createBall());
-
-    walls = [];
-    walls.push(new Wall(  canv.width/2,            -100, 2*canv.width,           280, "up"));
-    walls.push(new Wall(canv.width+100,   canv.height/2,          280, 2*canv.height, "right"));
-    walls.push(new Wall(  canv.width/2, canv.height+100, 2*canv.width,           280, "down"));
-    walls.push(new Wall(          -100,   canv.height/2,          280, 2*canv.height, "left"));
-    gate = new Gate(canv.width/2, 20.5, 40, 40, "#888888");
-
-    for(var i = 0; i < balls.length; i++) {
-      entities.push(balls[i]);
-    } 
-    for(var i = 0; i < walls.length; i++) {
-      entities.push(walls[i]);
-    }
-    entities.push(gate);
-
-    ch = new CollisionHandler(entities);
+    rooms[0].ready();
   };
 
-  this.tick = function()
+  self.tick = function()
   {
     ph.tick();
     ch.tick();
-    for(var i = 0; i < entities.length; i++) {
-      entities[i].tick(ih);
-    }
+    for(var i = 0; i < tickables.length; i++)
+      tickables[i].tick(ih);
   };
 
-  this.draw = function()
+  self.draw = function()
   {
     ph.draw(canv);
-    for(var i = 0; i < entities.length; i++) {
-      entities[i].draw(canv);
-    }  
+    for(var i = 0; i < drawables.length; i++)
+      drawables[i].draw(canv);
   };
 
-  this.cleanup = function()
+  self.cleanup = function()
   {
   };
+
+  self.wasDefeated = function(room)
+  {
+    console.log("Room defeated");
+  }
+
+  self.registerParticle = function(particle)
+  {
+    ph.registerParticle(particle);
+  }
+
+  self.registerEntity = function(entity)
+  {
+    if(entity.collidable) ch.registerCollidable(entity);
+    if(entity.tickable) tickables.push(entity);
+    if(entity.drawable) drawables.push(entity);
+  }
+
+  self.unregisterEntity = function(entity)
+  {
+    if(entity.collidable) ch.unregisterCollidable(entity);
+    if(entity.tickable) tickables.splice(tickables.indexOf(entity),1);
+    if(entity.drawable) drawables.splice(drawables.indexOf(entity),1);
+  }
 };
 

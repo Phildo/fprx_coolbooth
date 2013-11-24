@@ -1,11 +1,15 @@
-var Ball = function(x, y, xvel, yvel, color, ph)
+var Ball = function(x, y, xvel, yvel, delegate)
 {
+  this.tickable = true;
+  this.drawable = true;
+  this.collidable = true;
+
   this.type = "BALL";
   this.x = x;
   this.y = y;
   this.width  = 10;
   this.height = 10;
-  this.color = color;
+  this.color = randomColor();
 
   this.xvel = xvel;
   this.yvel = yvel;
@@ -68,11 +72,34 @@ var Ball = function(x, y, xvel, yvel, color, ph)
           break;
       }
 
-      ph.registerParticle(new StrikeSpot(self, false));
+      delegate.registerParticle(new StrikeSpot(self, false));
     }
     if (thing.type == "GATE") 
     {
-      ph.registerParticle(new StrikeSpot(self, true));
+      delegate.registerParticle(new StrikeSpot(self, true));
     }
   };
+
+  function randomColor()
+  {
+    switch(Math.floor(Math.random()*5))
+    {
+      case 0:
+        return "#ff0000";
+        break;
+      case 1:
+        return "#00ff00";
+        break;
+      case 2:
+        return "#0000ff";
+        break;
+      case 3:
+        return "#ffff00";
+        break;
+      case 4:
+        return "#ff00ff";
+        break;
+    }
+  }
+
 };

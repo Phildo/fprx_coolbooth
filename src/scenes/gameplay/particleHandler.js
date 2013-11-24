@@ -6,6 +6,7 @@ var ParticleHandler = function()
   self.registerParticle = function(particle)
   {
     particles.push(particle);
+    if(particles.length > 20) particles.shift();
   }
 
   self.tick = function()

@@ -1,5 +1,9 @@
 var Wall = function(x, y, width, height,pos)
 {
+  this.drawable = true;
+  this.tickable = true;
+  this.collidable = true;
+
   this.type = "WALL";
   this.homeX = x;
   this.homeY = y;
